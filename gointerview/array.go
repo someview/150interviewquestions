@@ -34,3 +34,38 @@ func removeElement(nums []int, val int) int {
 	}
 	return left
 }
+
+// 移除数组中的重复元素
+func removeDuplicates(nums []int) int {
+	l := len(nums)
+	if l <= 0 {
+		return l
+	}
+	resultIdx := 1
+	for i := 1; i < l; i++ {
+		if nums[i-1] != nums[i] {
+			nums[resultIdx] = nums[i]
+			resultIdx++
+		}
+	}
+	return resultIdx
+}
+
+// 删除数组中的重复元素，使其最多出现两次
+// 要点再点，
+func removeLimitedDuplicates(nums []int) int {
+	if len(nums) <= 2 {
+		return len(nums)
+	}
+
+	resultIdx := 2
+	// 递归，假设出现n次
+	for i := 2; i < len(nums); i++ {
+		if nums[i] != nums[resultIdx-2] {
+			nums[resultIdx] = nums[i]
+			resultIdx++
+		}
+	}
+
+	return resultIdx
+}
