@@ -39,5 +39,5 @@ func TestRemoveLimitedDuplicated(t *testing.T) {
 
 func TestGetMajorElement(t *testing.T) {
 	nums := []int{2, 2, 1, 1, 1, 2, 2}
-	assert.Equal(t, 2, GetMajorElement(nums))
+	assert.Equal(t, 2, majorityElement(nums))
 }

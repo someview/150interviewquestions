@@ -54,54 +54,44 @@ func removeDuplicates(nums []int) int {
 // 删除数组中的重复元素，使其最多出现两次
 func removeLimitedDuplicates(nums []int) int {
 	// GPT给出的最优解法
-	// if len(nums) <= 2 {
-	//     return len(nums)
-	// }
-
-	// resultIdx := 2
-
-	// for i := 2; i < len(nums); i++ {
-	//     if nums[i] != nums[resultIdx-2] {
-	//         nums[resultIdx] = nums[i]
-	//         resultIdx++
-	//     }
-	// }
-
-	// return resultIdx
-	count := len(nums)
-	if count <= 1 {
-		return count
+	if len(nums) <= 2 {
+		return len(nums)
 	}
-	resultIdx := 1
-	startIdx := 0
-	for nowIndex := 1; nowIndex < count; nowIndex++ {
-		if nums[nowIndex] != nums[nowIndex-1] {
-			nums[resultIdx] = nums[nowIndex]
-			resultIdx++
-			startIdx = nowIndex
-			continue
-		}
-		if startIdx+1 >= nowIndex {
-			nums[resultIdx] = nums[nowIndex]
+
+	resultIdx := 2
+
+	for i := 2; i < len(nums); i++ {
+		if nums[i] != nums[resultIdx-2] {
+			nums[resultIdx] = nums[i]
 			resultIdx++
 		}
 	}
 	return resultIdx
 }
 
-func GetMajorElement(nums []int) int {
-	// 假设大小为n-1的nums的最多元素为m,那么，nums[n-1] + i, 其最大元素一定为m，或者max(nums[n-1])
-	if len(nums) == 1 {
-		return 0
-	}
-	end := len(nums) - 1
-	mid := end / 2
-	privot := nums[mid]
-	for i := 0; i < end; i++ {
-		if nums[i] >= privot {
-			nums[privot+1] = nums[mid]
-			mid++
+func majorityElement(nums []int) int {
+	count := 0
+	candidate := 0
+	for _, num := range nums {
+		if count == 0 {
+			candidate = num
+		}
+		if num == candidate {
+			count++
+		} else {
+			count--
 		}
 	}
-	return nums[len(nums)/2]
+	return candidate
+}
+
+// 给定一个整数数组 nums，将数组中的元素向右轮转 k 个位置，其中 k 是非负数。
+func rotate(nums []int, k int) {
+	count := len(nums)
+	k = k % count
+	s := make([]int, k)
+	index := count - k
+	copy(s, nums[index:])
+	copy(nums[k:], nums[0:index])
+	copy(nums[:k], s)
 }
