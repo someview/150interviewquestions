@@ -52,9 +52,8 @@ func removeDuplicates(nums []int) int {
 }
 
 // 删除数组中的重复元素，使其最多出现两次
-// 要点再点，
 func removeLimitedDuplicates(nums []int) int {
-	// GPT给出的解法
+	// GPT给出的最优解法
 	// if len(nums) <= 2 {
 	//     return len(nums)
 	// }
