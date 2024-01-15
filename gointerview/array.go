@@ -88,3 +88,20 @@ func removeLimitedDuplicates(nums []int) int {
 	}
 	return resultIdx
 }
+
+func GetMajorElement(nums []int) int {
+	// 假设大小为n-1的nums的最多元素为m,那么，nums[n-1] + i, 其最大元素一定为m，或者max(nums[n-1])
+	if len(nums) == 1 {
+		return 0
+	}
+	end := len(nums) - 1
+	mid := end / 2
+	privot := nums[mid]
+	for i := 0; i < end; i++ {
+		if nums[i] >= privot {
+			nums[privot+1] = nums[mid]
+			mid++
+		}
+	}
+	return nums[len(nums)/2]
+}

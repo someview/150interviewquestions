@@ -36,3 +36,8 @@ func TestRemoveLimitedDuplicated(t *testing.T) {
 	assert.Equal(t, 5, removeLimitedDuplicates(nums))
 	assert.ElementsMatch(t, nums[:5], []int{1, 1, 2, 2, 3})
 }
+
+func TestGetMajorElement(t *testing.T) {
+	nums := []int{2, 2, 1, 1, 1, 2, 2}
+	assert.Equal(t, 2, GetMajorElement(nums))
+}
