@@ -54,18 +54,38 @@ func removeDuplicates(nums []int) int {
 // 删除数组中的重复元素，使其最多出现两次
 // 要点再点，
 func removeLimitedDuplicates(nums []int) int {
-	if len(nums) <= 2 {
-		return len(nums)
-	}
+	// GPT给出的解法
+	// if len(nums) <= 2 {
+	//     return len(nums)
+	// }
 
-	resultIdx := 2
-	// 递归，假设出现n次
-	for i := 2; i < len(nums); i++ {
-		if nums[i] != nums[resultIdx-2] {
-			nums[resultIdx] = nums[i]
+	// resultIdx := 2
+
+	// for i := 2; i < len(nums); i++ {
+	//     if nums[i] != nums[resultIdx-2] {
+	//         nums[resultIdx] = nums[i]
+	//         resultIdx++
+	//     }
+	// }
+
+	// return resultIdx
+	count := len(nums)
+	if count <= 1 {
+		return count
+	}
+	resultIdx := 1
+	startIdx := 0
+	for nowIndex := 1; nowIndex < count; nowIndex++ {
+		if nums[nowIndex] != nums[nowIndex-1] {
+			nums[resultIdx] = nums[nowIndex]
+			resultIdx++
+			startIdx = nowIndex
+			continue
+		}
+		if startIdx+1 >= nowIndex {
+			nums[resultIdx] = nums[nowIndex]
 			resultIdx++
 		}
 	}
-
 	return resultIdx
 }
