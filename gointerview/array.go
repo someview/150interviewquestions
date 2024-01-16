@@ -96,14 +96,15 @@ func rotate(nums []int, k int) {
 	copy(nums[:k], s)
 }
 
+// 最优解, 股票价格相当于一系列的折线图,寻找递增子序列中的最大值，只需要遍历一次就足够了
 func maxProfit(prices []int) int {
 	minPrice := prices[0]
 	maxProfit := 0
 	for _, price := range prices {
 		if price < minPrice {
 			minPrice = price
-		} else if profit := price - minPrice; profit > maxProfit {
-			maxProfit = profit
+		} else {
+			maxProfit = max(maxProfit, price-minPrice)
 		}
 	}
 	return maxProfit
