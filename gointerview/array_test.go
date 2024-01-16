@@ -50,3 +50,17 @@ func TestMaxProfit(t *testing.T) {
 	prices = []int{7, 1, 3, 2, 5, 4}
 	assert.Equal(t, 4, maxProfit(prices))
 }
+
+func TestAccMaxProfit(t *testing.T) {
+	prices := []int{1, 2}
+	assert.Equal(t, 1, accMaxProfit(prices))
+	prices = []int{7, 6, 5}
+	assert.Equal(t, 0, accMaxProfit(prices))
+	prices = []int{7, 1, 3, 2, 5, 4}
+	assert.Equal(t, 5, accMaxProfit(prices))
+}
+
+func TestCanJump(t *testing.T) {
+	grids := []int{3, 2, 1, 0, 4}
+	assert.False(t, canJump(grids))
+}

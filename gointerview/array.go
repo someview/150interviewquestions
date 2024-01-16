@@ -109,3 +109,43 @@ func maxProfit(prices []int) int {
 	}
 	return maxProfit
 }
+
+// 买卖股票的最佳时机 II
+func accMaxProfit(prices []int) int {
+	days := len(prices)
+	if days <= 1 {
+		return 0
+	}
+	totalProfit := 0
+	for day := 0; day < days-1; day++ {
+		if prices[day] < prices[day+1] {
+			totalProfit += prices[day+1] - prices[day]
+		}
+	}
+
+	return totalProfit
+}
+
+// 跳跃游戏
+func canJump(nums []int) bool {
+	// 逆序，寻找为0的位置，前面的元素是否可以跳过为0的位置
+	// 动态规划
+	// dp[i] = max(dp[i-1]+ nums[i]+i)
+	// dp[i-1] = max(dp[i-2]+nums[i-1]+1)
+	// dp[0] = nums[0]
+	count := len(nums)
+	if count == 1 {
+		return true
+	}
+	dp := 0
+	for i := 0; i < count-1; i++ {
+		dp = max(dp, nums[i]+i)
+		if dp == i {
+			return false
+		}
+		if dp >= count-1 {
+			return true
+		}
+	}
+	return false
+}
