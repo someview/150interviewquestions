@@ -95,3 +95,16 @@ func rotate(nums []int, k int) {
 	copy(nums[k:], nums[0:index])
 	copy(nums[:k], s)
 }
+
+func maxProfit(prices []int) int {
+	minPrice := prices[0]
+	maxProfit := 0
+	for _, price := range prices {
+		if price < minPrice {
+			minPrice = price
+		} else if profit := price - minPrice; profit > maxProfit {
+			maxProfit = profit
+		}
+	}
+	return maxProfit
+}

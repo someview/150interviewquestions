@@ -41,3 +41,12 @@ func TestGetMajorElement(t *testing.T) {
 	nums := []int{2, 2, 1, 1, 1, 2, 2}
 	assert.Equal(t, 2, majorityElement(nums))
 }
+
+func TestMaxProfit(t *testing.T) {
+	prices := []int{1, 2}
+	assert.Equal(t, 1, maxProfit(prices))
+	prices = []int{7, 6, 5}
+	assert.Equal(t, 0, maxProfit(prices))
+	prices = []int{7, 1, 3, 2, 5, 4}
+	assert.Equal(t, 4, maxProfit(prices))
+}
