@@ -130,7 +130,7 @@ func accMaxProfit(prices []int) int {
 func canJump(nums []int) bool {
 	// 逆序，寻找为0的位置，前面的元素是否可以跳过为0的位置
 	// 动态规划
-	// dp[i] = max(dp[i-1]+ nums[i]+i)
+	// dp[i] = dp[i-2]
 	// dp[i-1] = max(dp[i-2]+nums[i-1]+1)
 	// dp[0] = nums[0]
 	count := len(nums)
@@ -148,4 +148,19 @@ func canJump(nums []int) bool {
 		}
 	}
 	return false
+}
+
+func jump(nums []int) int {
+	length := len(nums)
+	end := 0
+	maxPosition := 0
+	steps := 0
+	for i := 0; i < length-1; i++ {
+		maxPosition = max(maxPosition, i+nums[i])
+		if i == end {
+			end = maxPosition
+			steps++
+		}
+	}
+	return steps
 }
