@@ -64,3 +64,8 @@ func TestCanJump(t *testing.T) {
 	grids := []int{3, 2, 1, 0, 4}
 	assert.False(t, canJump(grids))
 }
+
+func TestHIndex(t *testing.T) {
+	citations := []int{3, 0, 6, 1, 5}
+	assert.Equal(t, 3, hIndex(citations))
+}

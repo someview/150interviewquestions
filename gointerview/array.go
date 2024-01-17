@@ -1,5 +1,7 @@
 package interview
 
+import "sort"
+
 func mergeSortedArray(nums1 []int, m int, nums2 []int, n int) {
 	p1 := m - 1
 	p2 := n - 1
@@ -163,4 +165,24 @@ func jump(nums []int) int {
 		}
 	}
 	return steps
+}
+
+// H 指数
+// 根据维基百科上 h 指数的定义：
+// h 代表“高引用次数” ，
+// 一名科研人员的 h 指数 是指他（她）至少发表了 h 篇论文，
+// 并且 至少 有 h 篇论文被引用次数大于等于 h 。如果 h 有多种可能的值，h 指数 是其中最大的那个。
+func hIndex(citations []int) int {
+	in := sort.IntSlice(citations)
+	sort.Sort(in)
+	h := 0
+	num := len(citations)
+	for i := num - 1; i >= 0; i-- {
+		if citations[i] >= num-i {
+			h++
+		} else {
+			return h
+		}
+	}
+	return h
 }
