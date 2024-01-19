@@ -69,3 +69,17 @@ func TestHIndex(t *testing.T) {
 	citations := []int{3, 0, 6, 1, 5}
 	assert.Equal(t, 3, hIndex(citations))
 }
+
+func TestCanRunCircuit(t *testing.T) {
+	gas := []int{1, 2, 3, 4, 5}
+	cost := []int{3, 4, 5, 1, 2}
+	assert.Equal(t, 3, canCompleteCircuit(gas, cost))
+
+	gas = []int{2, 3, 4}
+	cost = []int{3, 4, 3}
+	assert.Equal(t, -1, canCompleteCircuit(gas, cost))
+
+	gas = []int{1, 4, 4, 3}
+	cost = []int{3, 4, 1, 2}
+	assert.Equal(t, 3, canCompleteCircuit(gas, cost))
+}

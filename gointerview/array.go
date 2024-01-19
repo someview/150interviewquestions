@@ -186,3 +186,21 @@ func hIndex(citations []int) int {
 	}
 	return h
 }
+
+// 分成2步,能不能
+func canCompleteCircuit(gas []int, cost []int) int {
+	nums := len(gas)
+	index := -1
+	total := 0
+	for i := 0; i < nums; i++ {
+		cost[i] = gas[i] - cost[i]
+		total += cost[i]
+		if cost[i] > 0 {
+			index = max(index, cost[i])
+		}
+	}
+	if total >= 0 {
+		return index
+	}
+	return -1
+}
