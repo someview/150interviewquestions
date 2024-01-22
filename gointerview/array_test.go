@@ -83,3 +83,10 @@ func TestCanRunCircuit(t *testing.T) {
 	cost = []int{3, 4, 1, 2}
 	assert.Equal(t, 3, canCompleteCircuit(gas, cost))
 }
+
+func TestTrap(t *testing.T) {
+	height := []int{0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1}
+	assert.Equal(t, 6, trap(height))
+	height = []int{4, 2, 0, 3, 2, 5}
+	assert.Equal(t, 9, trap(height))
+}

@@ -1,6 +1,8 @@
 package interview
 
-import "sort"
+import (
+	"sort"
+)
 
 func mergeSortedArray(nums1 []int, m int, nums2 []int, n int) {
 	p1 := m - 1
@@ -187,7 +189,10 @@ func hIndex(citations []int) int {
 	return h
 }
 
-// 分成2步,能不能
+// 逻辑证明:
+// 1. a>b,时，肯定能达到
+// 1.
+// 2.
 func canCompleteCircuit(gas []int, cost []int) int {
 	nums := len(gas)
 	index := -1
@@ -203,4 +208,31 @@ func canCompleteCircuit(gas []int, cost []int) int {
 		return index
 	}
 	return -1
+}
+
+func trap(arr []int) int {
+	n := len(arr)
+	leftMax := make([]int, n)
+	rightMax := make([]int, n)
+	max := 0
+	for i := 0; i < n; i++ {
+		if arr[i] >= max {
+			max = arr[i]
+		}
+		leftMax[i] = max
+	}
+	max = 0
+	for i := n - 1; i >= 0; i-- {
+		if arr[i] >= max {
+			max = arr[i]
+		}
+		rightMax[i] = max
+	}
+
+	total := 0
+	for i := 0; i < n; i++ {
+		total += min(rightMax[i], leftMax[i]) - arr[i]
+	}
+
+	return total
 }
