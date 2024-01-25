@@ -237,7 +237,33 @@ func trap(arr []int) int {
 	return total
 }
 
-func strStr(text string, pattern string) int {
-	// 求解pattern的next真前缀数组
-	return 0
+// 求解匹配needle的第一个下标，若没有，返回-1
+func strStr(haystack string, needle string) int {
+	// 求解needle的next真前缀数组
+	border := make([]int, len(needle))
+	border[0] = 0
+
+	for i := 1; i < len(needle); i++ {
+		if needle[i] == needle[border[i-1]] {
+			border[i] = border[i-1] + 1
+		} else {
+			border[i] = 0
+		}
+	}
+
+	j := 0
+	for i := 0; i < len(haystack); i++ {
+		if haystack[i] == needle[j] {
+			j++
+			if j == len(needle) {
+				return i - len(needle) + 1
+			}
+		} else if j > 0 {
+			j = border[j-1]
+		} else {
+			j = 0
+		}
+	}
+
+	return -1
 }
