@@ -236,3 +236,8 @@ func trap(arr []int) int {
 
 	return total
 }
+
+func strStr(text string, pattern string) int {
+	// 求解pattern的next真前缀数组
+	return 0
+}
