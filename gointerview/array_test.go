@@ -90,3 +90,9 @@ func TestTrap(t *testing.T) {
 	height = []int{4, 2, 0, 3, 2, 5}
 	assert.Equal(t, 9, trap(height))
 }
+
+func Test_strStr(t *testing.T) {
+	text := "mississippi"
+	pattern := "issip"
+	assert.Equal(t, 4, strStr(text, pattern))
+}
