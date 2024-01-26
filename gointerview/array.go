@@ -237,31 +237,27 @@ func trap(arr []int) int {
 	return total
 }
 
-// 求解匹配pattern的第一个下标，若没有，返回-1
 func strStr(text string, pattern string) int {
+	// next[i] 表示pattern[0]...pattern[i-1]的真前缀
 	next := make([]int, len(pattern))
-	next[0] = 0 // 表示第i个字符的前缀表的长度
+	next[0] = 0
 
-	for i := 1; i < len(pattern); i++ {
-		if pattern[i] == pattern[next[i-1]] {
+	for i := 1; i < len(next); i++ {
+		if pattern[i-1] == pattern[next[i-1]] {
 			next[i] = next[i-1] + 1
 		} else {
 			next[i] = 0
 		}
 	}
-
-	i, j := 0, 0
-	for i < len(text) {
+	// i表示text索引, j 表示pattern索引
+	for i, j := 0, 0; i < len(text); i++ {
 		if text[i] == pattern[j] {
 			if j == len(pattern)-1 {
 				return i - len(pattern) + 1
 			}
 			j++
-			i++
-		} else if j > 0 {
-			j = next[j-1]
 		} else {
-			i++
+			j = next[j]
 		}
 	}
 
