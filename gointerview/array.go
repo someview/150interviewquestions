@@ -274,3 +274,18 @@ func strStr(text string, pattern string) int {
 
 	return -1
 }
+
+// 盛水最多最多的容器
+func maxArea(height []int) int {
+	i, j := 0, len(height)-1
+	res := 0
+	for i < j {
+		if height[i] <= height[j] {
+			i++
+		} else {
+			j--
+		}
+		res = max(res, min(height[i], height[j])*(j-i))
+	}
+	return res
+}
