@@ -237,27 +237,38 @@ func trap(arr []int) int {
 	return total
 }
 
-func strStr(text string, pattern string) int {
-	// next[i] 表示pattern[0]...pattern[i-1]的真前缀
+func GetNext(pattern string) []int {
 	next := make([]int, len(pattern))
-	next[0] = 0
-
-	for i := 1; i < len(next); i++ {
-		if pattern[i-1] == pattern[next[i-1]] {
-			next[i] = next[i-1] + 1
+	next[0] = -1 // 模板字符串的第一个前后缀的长度为设置为-1
+	k := 0       // k为最大前缀长度
+	for i := 0; i < len(pattern)-1; i++ {
+		k = next[i]
+		for k > -1 && pattern[i] != pattern[k] {
+			k = next[k]
+		}
+		if k == -1 {
+			next[i+1] = 0
 		} else {
-			next[i] = 0
+			next[i+1] = k + 1
 		}
 	}
-	// i表示text索引, j 表示pattern索引
+	return next
+}
+
+func strStr(text string, pattern string) int {
+	next := GetNext(pattern)
+	m := len(pattern)
 	for i, j := 0, 0; i < len(text); i++ {
-		if text[i] == pattern[j] {
-			if j == len(pattern)-1 {
-				return i - len(pattern) + 1
-			}
-			j++
-		} else {
+		for j > -1 && text[i] != pattern[j] {
 			j = next[j]
+		}
+		if j == -1 {
+			j = 0
+		} else {
+			j++
+		}
+		if j == m {
+			return i - m + 1
 		}
 	}
 
