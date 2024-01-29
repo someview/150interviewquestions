@@ -1,5 +1,5 @@
 /*!
-  # ArrayQuiz Module
+  # ArrayQuiz
 
   `arrayquiz` 是一个提供数组操作函数的模块，例如合并两个排序好的数组。
 */

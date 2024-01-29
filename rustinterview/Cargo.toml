@@ -3,6 +3,8 @@ name = "rustinterview"
 version = "0.1.0"
 edition = "2021"
 
+authors = ["someview <fengyeall@gmail.com>"]
+# 其他配置...
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
