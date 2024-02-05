@@ -25,21 +25,22 @@ func minSubArrayLen(target int, nums []int) int {
 
 // func length
 func lengthOfLongestSubstring(s string) int {
+	num := len(s)
+	if num <= 1 {
+		return len(s)
+	}
 	l, r := 0, 0
 	res := 0
 	m := make(map[byte]int)
-	for r < len(s) && l < len(s) {
+	for r < len(s) {
 		index, ok := m[s[r]]
-		if ok {
+		if ok && index >= l {
 			res = max(res, r-l)
-			for i := 0; i <= index; i++ {
-				delete(m, s[i])
-			}
 			l = index + 1
-		} else {
-			m[s[r]] = r
 		}
+		m[s[r]] = r
 		r++
 	}
+	res = max(res, r-l)
 	return res
 }
