@@ -11,5 +11,11 @@ func TestSlideWindow(t *testing.T) {
 	assert.Equal(t, 3, lengthOfLongestSubstring(str))
 
 	str = "pwwkew"
+	assert.Equal(t, 3, lengthOfLongestSubstring(str))
+
+	str = "abba"
+	assert.Equal(t, 2, lengthOfLongestSubstring(str))
+
+	str = " "
 	assert.Equal(t, 1, lengthOfLongestSubstring(str))
 }
