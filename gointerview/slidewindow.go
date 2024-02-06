@@ -25,29 +25,16 @@ func minSubArrayLen(target int, nums []int) int {
 
 // func length
 func lengthOfLongestSubstring(s string) int {
-<<<<<<< HEAD
-	if len(s) == 1 {
-		return 1
-	}
-	l, r := 0, 1
-=======
 	num := len(s)
 	if num <= 1 {
 		return len(s)
 	}
 	l, r := 0, 0
->>>>>>> 3b539d9232bf7d069bd1cbbfc11db94da6beec79
 	res := 0
 	m := make(map[byte]int)
 	for r < len(s) {
 		index, ok := m[s[r]]
-<<<<<<< HEAD
-		if !ok {
-			m[s[r]] = r
-		} else {
-=======
 		if ok && index >= l {
->>>>>>> 3b539d9232bf7d069bd1cbbfc11db94da6beec79
 			res = max(res, r-l)
 			l = index + 1
 		}
@@ -56,4 +43,8 @@ func lengthOfLongestSubstring(s string) int {
 	}
 	res = max(res, r-l)
 	return res
+}
+
+func findAnagrams(s string, p string) {
+
 }
